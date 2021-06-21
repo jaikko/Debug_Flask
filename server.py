@@ -39,12 +39,8 @@ def book(competition, club):
     if foundClub and foundCompetition:
         return render_template('booking.html', club=foundClub, competition=foundCompetition)
     else:
-<<<<<<< HEAD
         flash("Something went wrong-please try again")
-=======
 
-        flash("Somethingg went wrong-please try again")
->>>>>>> 80b5e17f028ea36f3d3bcb2e680ea7ad16c06cd2
         return render_template('welcome.html', club=club, competitions=competitions)
 
 
