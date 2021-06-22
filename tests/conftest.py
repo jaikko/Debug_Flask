@@ -22,7 +22,7 @@ def generate_variables():
         "email": "test@test.co",
         "points": "13"
     }]
-        
+
     competitions = [{
         "name": "Spring Festival",
         "date": "2020-03-27 10:00:00",
