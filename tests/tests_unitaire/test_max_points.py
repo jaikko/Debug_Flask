@@ -12,16 +12,16 @@ class TestPointsClubs:
             {
             "name": "Spring",
             "date": "2020-03-27 10:00:00",
-            "numberOfPlaces": "12"
+            "numberOfPlaces": "14"
         }]
 
     server.clubs = [{
             "name": "Test",
             "email": "test@test.co",
-            "points": "4"
+            "points": "13"
         }]
 
-    # nombre de points suffisants
+    # nombre de points inférieurs à 12
     def test_correct_number(self, client):
 
         rv = client.post('/purchasePlaces', data=dict(
@@ -31,14 +31,14 @@ class TestPointsClubs:
             ))
         assert rv.status_code == 200
 
-    # nombre de points insuffisants
+    # nombre de points supérieur à 12
     def test_incorrect_number(self, client):
 
         rv = client.post('/purchasePlaces', data=dict(
-            places=5,
+            places=13,
             competition="Spring Festival",
             club="Test"
             ))
         assert rv.status_code == 200
         html = rv.get_data(as_text=True)
-        assert '<li>You don&#39;t have enougth point or the number entered is greater than the number of places remaining</li>' in html
+        assert '<li>You can&#39;t reserve more than 12 places</li>' in html
