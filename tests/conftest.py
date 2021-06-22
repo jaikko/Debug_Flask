@@ -1,5 +1,5 @@
 import pytest
-from server import app as _app
+from server import app as _app, clubs, competitions
 
 
 @pytest.fixture
@@ -14,3 +14,4 @@ def app():
 
     with _app.app_context():
         yield _app
+
