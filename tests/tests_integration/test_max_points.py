@@ -4,26 +4,26 @@ import server
 class TestPointsClubs:
 
     # modification du contenu des variables
-    server.competitions = [{
-            "name": "Spring Festival",
-            "date": "2020-03-27 10:00:00",
-            "numberOfPlaces": "14"
-            },
-            {
-            "name": "Spring",
-            "date": "2020-03-27 10:00:00",
-            "numberOfPlaces": "12"
-        }]
+    # server.competitions = [{
+    #         "name": "Spring Festival",
+    #         "date": "2020-03-27 10:00:00",
+    #         "numberOfPlaces": "14"
+    #         },
+    #         {
+    #         "name": "Spring",
+    #         "date": "2020-03-27 10:00:00",
+    #         "numberOfPlaces": "12"
+    #     }]
 
-    server.clubs = [{
-            "name": "Test",
-            "email": "test@test.co",
-            "points": "13"
-        }]
+    # server.clubs = [{
+    #         "name": "Test",
+    #         "email": "test@test.co",
+    #         "points": "13"
+    #     }]
 
     # nombre de points inférieur  à 12
-    def test_booking(self, client):
-
+    def test_booking(self, client, generate_variables):
+        server.clubs, server.competitions = generate_variables
         rv = client.post('/purchasePlaces', data=dict(
             places=4,
             competition="Spring Festival",
