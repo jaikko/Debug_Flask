@@ -1,7 +1,7 @@
 import server
 
 
-class DisplayPointsClubs:
+class TestDisplayPointsClubs:
 
     # modification du contenu des variables
 
@@ -14,9 +14,9 @@ class DisplayPointsClubs:
     # nombre de points suffisants
     def test_booking(self, client):
 
-        rv = client.post('/list')
+        rv = client.get('/list')
         assert rv.status_code == 200
         html = rv.get_data(as_text=True)
-        assert '<td>test@test.co</td>' in html
+        assert '<td>Test</td>' in html
         assert '<td>4</td>' in html
         

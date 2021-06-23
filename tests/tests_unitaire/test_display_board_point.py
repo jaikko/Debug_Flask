@@ -1,7 +1,7 @@
 import server
 
 
-class DisplayPointsClubs:
+class TestDisplayPointsClubs:
 
     # modification du contenu des variables
 
@@ -14,11 +14,11 @@ class DisplayPointsClubs:
     # page existe
     def test_correct_route(self, client):
 
-        rv = client.post('/list')
+        rv = client.get('/list')
         assert rv.status_code == 200
 
     # page non existante
     def test_incorrect_route(self, client):
 
-        rv = client.post('/lists')
-        assert rv.status_code == 500
+        rv = client.get('/lists')
+        assert rv.status_code == 404
