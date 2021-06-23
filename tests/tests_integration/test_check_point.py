@@ -4,6 +4,7 @@ import server
 class TestPointsClubs:
 
     # modification du contenu des variables
+    
     server.competitions = [{
             "name": "Spring Festival",
             "date": "2020-03-27 10:00:00",

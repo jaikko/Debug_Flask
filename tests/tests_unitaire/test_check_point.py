@@ -1,9 +1,11 @@
 import server
+import pytest
 
 
 class TestPointsClubs:
 
     # modification du contenu des variables
+    
     server.competitions = [{
             "name": "Spring Festival",
             "date": "2020-03-27 10:00:00",
@@ -22,6 +24,7 @@ class TestPointsClubs:
         }]
 
     # nombre de points suffisants
+    
     def test_correct_number(self, client):
 
         rv = client.post('/purchasePlaces', data=dict(
