@@ -1,4 +1,5 @@
 import json
+import datetime
 from flask import Flask, render_template, request, redirect, flash, url_for
 
 
@@ -49,15 +50,13 @@ def purchasePlaces():
     club = [c for c in clubs if c['name'] == request.form['club']][0]
     placesRequired = int(request.form['places'])
     competition['numberOfPlaces'] = int(competition['numberOfPlaces'])-placesRequired
+    if 
     flash('Great-booking complete!')
     return render_template('welcome.html', club=club, competitions=competitions)
 
 
 # TODO: Add route for points display
-@app.route('/list')
-def list():
-    club = [club for club in clubs]
-    return render_template('recap.html', club=club)
+
 
 @app.route('/logout')
 def logout():
