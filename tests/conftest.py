@@ -14,23 +14,3 @@ def app():
 
     with _app.app_context():
         yield _app
-
-@pytest.fixture
-def generate_variables():   
-    clubs = [{
-        "name": "Test",
-        "email": "test@test.co",
-        "points": "13"
-    }]
-
-    competitions = [{
-        "name": "Spring Festival",
-        "date": "2020-03-27 10:00:00",
-        "numberOfPlaces": "15"
-         },
-        {
-        "name": "Spring",
-        "date": "2020-03-27 10:00:00",
-        "numberOfPlaces": "14"
-    }]
-    return clubs, competitions

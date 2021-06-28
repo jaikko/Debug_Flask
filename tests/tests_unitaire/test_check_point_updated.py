@@ -22,14 +22,10 @@ class TestPointsClubsUpdated:
                 "points": "14"
             }]
 
-    def test_booking(self, client):
-        rv = client.post('/purchasePlaces', data=dict(
-            places=4,
-            competition="Spring Festival",
-            club="Test"
-            ))
+    def correct_route(self, client):
+        rv = client.get('/purchasePlaces')
         assert rv.status_code == 200
-        html = rv.get_data(as_text=True)
-        assert '<h2>Welcome, test@test.co </h2>' in html
-        assert 'Points available: 10' in html
-        assert '<li>Great-booking complete!</li>' in html
+
+    def incorrect_route(self, client):
+        rv = client.get('/purchasePlace')
+        assert rv.status_code == 200
