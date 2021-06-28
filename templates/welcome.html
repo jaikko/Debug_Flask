@@ -13,7 +13,7 @@
         <li>{{message}}</li>
         {% endfor %}
     </ul>
-    {% endif%} Points available: {{club['points']}}
+    {% endif%}{%endwith%} Points available: {{club['points']}}
     <h3>Competitions:</h3>
     <ul>
         {% for comp in competitions%}
@@ -24,7 +24,7 @@
         </li>
         <hr /> {% endfor %}
     </ul>
-    {%endwith%}
+
 
 </body>
 
