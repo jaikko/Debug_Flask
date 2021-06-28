@@ -3,25 +3,26 @@ import server
 
 class Testlogin:
 
-    server.clubs = [
-        {
-            "name": "Test",
-            "email": "test@test.co",
-            "points": "13"
-        }]
+    def setup(self):
+        server.clubs = [
+            {
+                "name": "Test",
+                "email": "test@test.co",
+                "points": "13"
+            }]
 
-    server.competitions = [
-            {
-                "name": "Spring Festival",
-                "date": "2020-03-27 10:00:00",
-                "numberOfPlaces": "5"
-            },
-            {
-                "name": "Fall Classic",
-                "date": "2020-10-22 13:30:00",
-                "numberOfPlaces": "3"
-            }
-        ]
+        server.competitions = [
+                {
+                    "name": "Spring Festival",
+                    "date": "2020-03-27 10:00:00",
+                    "numberOfPlaces": "5"
+                },
+                {
+                    "name": "Fall Classic",
+                    "date": "2020-10-22 13:30:00",
+                    "numberOfPlaces": "3"
+                }
+            ]
 
     def test_login(self, client):
 
