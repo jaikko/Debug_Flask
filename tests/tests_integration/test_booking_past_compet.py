@@ -22,16 +22,10 @@ class TestBookingPastCompet:
                 "points": "14"
             }]
 
-    # nombre de points suffisants
+    # bloquer réservation d'une compétition expirée
     def test_booking(self, client):
 
-        rv = client.get('/book/<competition>/<club>', data=dict(
-            places=3,
-            competition="Spring Festival",
-            club="Test"
-            ))
+        rv = client.get('/book/Spring/Test')
         assert rv.status_code == 200
         html = rv.get_data(as_text=True)
-        assert '<h2>Welcome, test@test.co </h2>' in html
-        assert 'Points available: 4' in html
-        assert '<li>Great-booking complete!</li>' in html
+        assert '<li>Competition expired</li>' in html

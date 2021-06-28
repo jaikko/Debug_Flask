@@ -22,24 +22,14 @@ class TestBookingPastCompet:
                 "points": "14"
             }]
 
-    # réserver une compétition expirée
-    def test_correct_compet(self, client):
+    # tester une url correcte
+    def test_correct_route(self, client):
 
-        rv = client.post('/purchasePlaces', data=dict(
-            places=3,
-            competition="Spring",
-            club="Test"
-            ))
+        rv = client.get('/book/Spring/Test')
         assert rv.status_code == 200
 
-    # réserver une compétition expirée
-    def test_incorrect_compet(self, client):
+    # tester une url fausse
+    def test_incorrect_route(self, client):
 
-        rv = client.post('/purchasePlaces', data=dict(
-            places=5,
-            competition="Spring Festival",
-            club="Test"
-            ))
-        assert rv.status_code == 200
-        html = rv.get_data(as_text=True)
-        assert '<li>You don&#39;t have enougth point or the number entered is greater than the number of places remaining</li>' in html
+        rv = client.get('/book/Spring/Tests')
+        assert rv.status_code == 500
