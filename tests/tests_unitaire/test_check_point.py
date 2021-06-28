@@ -1,5 +1,4 @@
 import server
-import pytest
 
 
 class TestPointsClubs:
@@ -24,8 +23,7 @@ class TestPointsClubs:
             }]
 
     # nombre de points suffisants
-
-    def test_correct_number(self, client):
+    def test_booking(self, client):
 
         rv = client.post('/purchasePlaces', data=dict(
             places=3,
@@ -33,15 +31,7 @@ class TestPointsClubs:
             club="Test"
             ))
         assert rv.status_code == 200
-
-    # nombre de points insuffisants
-    def test_incorrect_number(self, client):
-
-        rv = client.post('/purchasePlaces', data=dict(
-            places=5,
-            competition="Spring Festival",
-            club="Test"
-            ))
-        assert rv.status_code == 200
         html = rv.get_data(as_text=True)
-        assert '<li>You don&#39;t have enougth point or the number entered is greater than the number of places remaining</li>' in html
+        assert '<h2>Welcome, test@test.co </h2>' in html
+        assert 'Points available: 4' in html
+        assert '<li>Great-booking complete!</li>' in html
