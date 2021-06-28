@@ -23,7 +23,7 @@ class TestPointsClubsUpdated:
             }]
 
     def test_correct_route(self, client):
-        rv = client.post('/purchasePlaces',  data=dict(
+        rv = client.post('/purchasePlaces', data=dict(
             places=4,
             competition="Spring Festival",
             club="Test"
@@ -31,7 +31,7 @@ class TestPointsClubsUpdated:
         assert rv.status_code == 200
 
     def test_incorrect_route(self, client):
-        rv = client.post('/purchasePlace',  data=dict(
+        rv = client.post('/purchasePlace', data=dict(
             places=4,
             competition="Spring Festival",
             club="Test"

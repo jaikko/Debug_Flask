@@ -1,6 +1,5 @@
 import pytest
-from server import app as _app, clubs, competitions
-
+from server import app as _app
 
 @pytest.fixture
 def client(app):
