@@ -22,10 +22,10 @@ class TestPointsClubsUpdated:
                 "points": "14"
             }]
 
-    def correct_route(self, client):
+    def test_correct_route(self, client):
         rv = client.get('/purchasePlaces')
         assert rv.status_code == 200
 
-    def incorrect_route(self, client):
+    def test_incorrect_route(self, client):
         rv = client.get('/purchasePlace')
         assert rv.status_code == 200
