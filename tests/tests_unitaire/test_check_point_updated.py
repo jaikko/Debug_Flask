@@ -28,4 +28,4 @@ class TestPointsClubsUpdated:
 
     def test_incorrect_route(self, client):
         rv = client.get('/purchasePlace')
-        assert rv.status_code == 200
+        assert rv.status_code == 404
