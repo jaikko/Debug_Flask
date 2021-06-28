@@ -5,26 +5,26 @@ import pytest
 class TestPointsClubs:
 
     # modification du contenu des variables
-    
-    server.competitions = [{
-            "name": "Spring Festival",
-            "date": "2020-03-27 10:00:00",
-            "numberOfPlaces": "15"
-            },
-            {
-            "name": "Spring",
-            "date": "2020-03-27 10:00:00",
-            "numberOfPlaces": "12"
-        }]
+    def setup(self):
+        server.competitions = [{
+                "name": "Spring Festival",
+                "date": "2020-03-27 10:00:00",
+                "numberOfPlaces": "15"
+                },
+                {
+                "name": "Spring",
+                "date": "2020-03-27 10:00:00",
+                "numberOfPlaces": "12"
+            }]
 
-    server.clubs = [{
-            "name": "Test",
-            "email": "test@test.co",
-            "points": "4"
-        }]
+        server.clubs = [{
+                "name": "Test",
+                "email": "test@test.co",
+                "points": "4"
+            }]
 
     # nombre de points suffisants
-    
+
     def test_correct_number(self, client):
 
         rv = client.post('/purchasePlaces', data=dict(
