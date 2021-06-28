@@ -1,11 +1,29 @@
 import server
 
 
-class TestPointsClubs:
+class Test12MaxPointsCompet:
+
+    def setup(self):
+        server.clubs = [{
+            "name": "Test",
+            "email": "test@test.co",
+            "points": "13"
+        }]
+
+        server.competitions = [{
+            "name": "Spring Festival",
+            "date": "2020-03-27 10:00:00",
+            "numberOfPlaces": "15"
+            },
+            {
+            "name": "Spring",
+            "date": "2020-03-27 10:00:00",
+            "numberOfPlaces": "14"
+        }]
 
     # nombre de points inférieur  à 12
-    def test_booking(self, client, generate_variables):
-        server.clubs, server.competitions = generate_variables
+    def test_booking(self, client):
+
         rv = client.post('/purchasePlaces', data=dict(
             places=4,
             competition="Spring Festival",
