@@ -4,22 +4,23 @@ import server
 class TestBookingPastCompet:
 
     # modification du contenu des variables
-    server.competitions = [{
-            "name": "Spring Festival",
-            "date": "2021-10-27 10:00:00",
-            "numberOfPlaces": "15"
-            },
-            {
-            "name": "Spring",
-            "date": "2020-03-27 10:00:00",
-            "numberOfPlaces": "12"
-        }]
+    def setup(self):
+        server.competitions = [{
+                "name": "Spring Festival",
+                "date": "2020-03-27 10:00:00",
+                "numberOfPlaces": "15"
+                },
+                {
+                "name": "Spring",
+                "date": "2022-03-27 10:00:00",
+                "numberOfPlaces": "12"
+            }]
 
-    server.clubs = [{
-            "name": "Test",
-            "email": "test@test.co",
-            "points": "4"
-        }]
+        server.clubs = [{
+                "name": "Test",
+                "email": "test@test.co",
+                "points": "14"
+            }]
 
     # réserver une compétition expirée
     def test_correct_compet(self, client):
