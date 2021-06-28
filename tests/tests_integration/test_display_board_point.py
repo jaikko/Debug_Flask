@@ -4,12 +4,12 @@ import server
 class TestDisplayPointsClubs:
 
     # modification du contenu des variables
-
-    server.clubs = [{
-            "name": "Test",
-            "email": "test@test.co",
-            "points": "4"
-        }]
+    def setup(self):
+        server.clubs = [{
+                "name": "Test",
+                "email": "test@test.co",
+                "points": "4"
+            }]
 
     # nombre de points suffisants
     def test_booking(self, client):
@@ -19,4 +19,3 @@ class TestDisplayPointsClubs:
         html = rv.get_data(as_text=True)
         assert '<td>Test</td>' in html
         assert '<td>4</td>' in html
-        

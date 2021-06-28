@@ -4,12 +4,12 @@ import server
 class TestDisplayPointsClubs:
 
     # modification du contenu des variables
-
-    server.clubs = [{
-            "name": "Test",
-            "email": "test@test.co",
-            "points": "4"
-        }]
+    def setup(self):
+        server.clubs = [{
+                "name": "Test",
+                "email": "test@test.co",
+                "points": "4"
+            }]
 
     # page existe
     def test_correct_route(self, client):
