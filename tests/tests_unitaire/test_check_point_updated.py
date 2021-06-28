@@ -23,9 +23,17 @@ class TestPointsClubsUpdated:
             }]
 
     def test_correct_route(self, client):
-        rv = client.get('/purchasePlaces')
+        rv = client.post('/purchasePlaces',  data=dict(
+            places=4,
+            competition="Spring Festival",
+            club="Test"
+            ))
         assert rv.status_code == 200
 
     def test_incorrect_route(self, client):
-        rv = client.get('/purchasePlace')
+        rv = client.post('/purchasePlace',  data=dict(
+            places=4,
+            competition="Spring Festival",
+            club="Test"
+            ))
         assert rv.status_code == 404
