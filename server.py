@@ -27,8 +27,11 @@ def index():
 
 @app.route('/showSummary',methods=['POST'])
 def showSummary():
-    club = [club for club in clubs if club['email'] == request.form['email']][0]
-    return render_template('welcome.html',club=club,competitions=competitions)
+    club = [club for club in clubs if club['email'] == request.form['email']]
+    if club:
+        return render_template('welcome.html', club=club[0], competitions=competitions)
+    else:
+        return redirect(url_for('index'))
 
 
 @app.route('/book/<competition>/<club>')
@@ -36,7 +39,6 @@ def book(competition,club):
     foundClub = [c for c in clubs if c['name'] == club][0]
     foundCompetition = [c for c in competitions if c['name'] == competition][0]
     if foundClub and foundCompetition:
-        
         now = datetime.datetime.now()
         str = foundCompetition['date'].split(" ")[0].split("-")
         compet_date =datetime.datetime(int(str[0]), int(str[1]), int(str[2]))
@@ -56,12 +58,23 @@ def purchasePlaces():
     competition = [c for c in competitions if c['name'] == request.form['competition']][0]
     club = [c for c in clubs if c['name'] == request.form['club']][0]
     placesRequired = int(request.form['places'])
+    if placesRequired > 12:
+        flash("You can't reserve more than 12 places")
+        return render_template('booking.html', club=club, competition=competition)
+    if placesRequired > int((club['points'])) or placesRequired > int(competition['numberOfPlaces']):
+        flash("You don't have enougth point or the number entered is greater than the number of places remaining")
+        return render_template('booking.html', club=club, competition=competition)
     competition['numberOfPlaces'] = int(competition['numberOfPlaces'])-placesRequired
+    club['points'] = int(club['points'])-placesRequired
     flash('Great-booking complete!')
     return render_template('welcome.html', club=club, competitions=competitions)
 
 
 # TODO: Add route for points display
+@app.route('/list')
+def list():
+    club = [club for club in clubs]
+    return render_template('recap.html', club=club)
 
 
 @app.route('/logout')
